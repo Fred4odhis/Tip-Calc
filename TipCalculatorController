@@ -1,1 +1,40 @@
+using Microsoft.AspNetCore.Mvc;
+using TipCalculator.Models;
+
+namespace TipCalculator.Controllers
+{
+    public class TipCalculatorController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Calculate(decimal mealCost)
+        {
+            if (mealCost <= 0)
+            {
+                ModelState.AddModelError("", "The cost of the meal must be greater than 0.");
+                return View("Index", new TipCalculatorModel());
+            }
+
+            var model = new TipCalculatorModel
+            {
+                MealCost = mealCost
+            };
+
+            ViewBag.Tip15 = model.CalculateTip(15).ToString("C");
+            ViewBag.Tip20 = model.CalculateTip(20).ToString("C");
+            ViewBag.Tip25 = model.CalculateTip(25).ToString("C");
+
+            return View("Index", model);
+        }
+
+        public IActionResult Clear()
+        {
+            return RedirectToAction("Index");
+        }
+    }
+}
 
