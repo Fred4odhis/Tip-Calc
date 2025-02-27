@@ -1,1 +1,15 @@
+using System;
+
+namespace TipCalculator.Models
+{
+    public class TipCalculatorModel
+    {
+        public decimal MealCost { get; set; }
+
+        public decimal CalculateTip(decimal percentage)
+        {
+            return MealCost * (percentage / 100);
+        }
+    }
+}
 
