@@ -1,1 +1,25 @@
+/* site.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
+.alert {
+    margin-top: 20px;
+}
 
