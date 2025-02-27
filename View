@@ -1,1 +1,42 @@
+@model TipCalculator.Models.TipCalculatorModel
+@{
+    ViewData["Title"] = "Tip Calculator";
+}
+
+<h2>Tip Calculator</h2>
+
+<form asp-action="Calculate" method="post">
+    <div class="form-group">
+        <label for="mealCost">Meal Cost ($):</label>
+        <input type="number" name="mealCost" id="mealCost" class="form-control" placeholder="Enter meal cost" value="@Model?.MealCost" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+    <a asp-action="Clear" class="btn btn-secondary">Clear</a>
+</form>
+
+@if (!string.IsNullOrEmpty(ViewBag.Tip15))
+{
+    <div class="mt-4">
+        <p>Tip Amounts:</p>
+        <ul>
+            <li>15% Tip: @ViewBag.Tip15</li>
+            <li>20% Tip: @ViewBag.Tip20</li>
+            <li>25% Tip: @ViewBag.Tip25</li>
+        </ul>
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Validation Errors:</strong>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
 
